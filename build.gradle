@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes 'Main-Class': 'server/Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+compileJava.options.encoding = 'UTF-8' // устанавливает кодировку для компилируемого кода
+javadoc.options.encoding = 'UTF-8' // устанавливает кодировку для генерируемой документации
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+group = 'Server'
+version = 'Serv1.0'
+compileJava.options.encoding = 'UTF-8'
+//javadoc.options.encoding = 'UTF-8'
+//compileTestJava.options.encoding = 'UTF-8'
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.1'
+    //implementation 'com.fasterxml.jackson.annotation:jackson-annotations:2.16.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+javadoc {
+    destinationDir = file("${buildDir}/docs/javadoc")
+}
