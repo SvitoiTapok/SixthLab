@@ -6,6 +6,7 @@ public class Main {
         ProductCollection productCollection = new ProductCollection();
         //boolean isConnectionCreated = server.createConnection();
         server.createConnection();
+        System.out.println("Сервер готов к подключению");
         communictate(productCollection, server);
         }
     public static void communictate(ProductCollection productCollection, Server server){

@@ -12,18 +12,6 @@ public class Server {
     private final int port = 1110;
     private SocketChannel sock;
     private ServerSocketChannel serv;
-    private ByteBuffer buf;
-    private byte[] data = {1, 2, 3,6,6,6,6,6,6,6,6,6,6,6,6,6,66,6,6,6,66,6,6,6,};
-    private ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
-    private ObjectInputStream objectInputStream;
-
-    {
-        try {
-            objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private String message="";
 
@@ -60,29 +48,41 @@ public class Server {
     }
 
     public void getCommand(ProductCollection productCollection){
-        byte[] data = new byte[20000];
-        buf = ByteBuffer.wrap(data);
+        byte[] data = new byte[200];
+        ByteBuffer buf = ByteBuffer.wrap(data);
         try {
             sock.read(buf);
         }catch (IOException e) {
-            System.out.println("Соединение было прервано, повторая попытка подключения");
+            System.out.println("Соединение было прервано, повторная попытка подключения");
             Main.communictate(productCollection, this);
             return;
         }
         try {
                 //deserialize
-                byteArrayInputStream = new ByteArrayInputStream(data);
-                Command command = (Command) objectInputStream.readObject();
-                System.out.println(command.getClass());
-                Object p = objectInputStream.readObject();
-                objectInputStream.close();
-                command.execute(productCollection, p, this);
-
-            }
+                executeCommand(data, productCollection);
+        }
         catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+    public void executeCommand(byte[] data, ProductCollection productCollection) {
+        try {
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+
+            Command command = (Command) objectInputStream.readObject();
+            //System.out.println(command.getClass() + " " + command);
+
+            Object p = objectInputStream.readObject();
+
+            // Закрываем только ObjectInputStream
+            objectInputStream.close();
+
+            command.execute(productCollection, p, this);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     public void addMessage(String message){
         this.message += message;
@@ -90,6 +90,7 @@ public class Server {
 
     public byte[] serializeMessage(String message){
         try {
+            byteArrayOutputStream = new ByteArrayOutputStream();
             objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(message);
             objectOutputStream.flush();
@@ -103,15 +104,19 @@ public class Server {
 
     public void sendMessage(){
         byte[] data;
+        //System.out.println(message);
         data = serializeMessage(message);
-        buf = ByteBuffer.wrap(data);
+        ByteBuffer buf = ByteBuffer.allocate(20000);
+        buf.put(data);
+        //System.out.println(new String(data));
+        buf.flip();
         try {
             sock.write(buf);
+            buf.clear();
             System.out.println("сообщение отправлено");
             this.message = "";
         }catch (IOException e){
             System.out.println("Возникли проблемы с соединением");
-            return;
         }
 
 
