@@ -10,8 +10,8 @@ import server.Server;
 
 public class RemoveByID implements Command{
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
-        int id = (int) p;
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
+        int id = (int) p[0];
         productCollection.removeProduct(id);
         server.addMessage("объект с id=" + id + "(если такой был) удален");
     }

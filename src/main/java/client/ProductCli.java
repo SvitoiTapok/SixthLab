@@ -38,18 +38,16 @@ public class ProductCli implements Comparable<ProductCli>, Serializable {
         return this.getName().toLowerCase().compareTo(p.getName().toLowerCase());
     }
 
-    //@Override
-    //public String toString() {
-    //    return "Product{" + "\n" +
-    //            "\t" + "id=" + id + ",\n" +
-    //            "\t" + "name='" + name + '\'' + ",\n" +
-    //            "\t" + "coordinates=" + coordinates + ",\n" +
-    //            "\t" + "creationDate=" + creationDate + ",\n" +
-    //            "\t" + "price=" + price + ",\n" +
-    //            "\t" + "UnitOfMeasure=" + unitOfMeasure + ",\n" +
-    //            "\t" + "owner=" + owner + "\n" +
-    //            '}';
-    //}
+    @Override
+    public String toString() {
+        return "Product{" + "\n" +
+                "\t" + "name='" + name + '\'' + ",\n" +
+                "\t" + "coordinates=" + coordinates + ",\n" +
+                "\t" + "price=" + price + ",\n" +
+                "\t" + "UnitOfMeasure=" + unitOfMeasure + ",\n" +
+                "\t" + "owner=" + owner + "\n" +
+                '}';
+    }
 
     public void setName(String name) {
         this.name = name;

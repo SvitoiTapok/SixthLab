@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductCollection {
     private final LinkedHashSet<Product> products = new LinkedHashSet<>();
@@ -78,8 +79,8 @@ public class ProductCollection {
     }
     //System.out.println(products1);
 
-    public LinkedHashSet<Product> getProducts() {
-        return products;
+    public List<Product> getProducts() {
+        return products.stream().sorted().collect(Collectors.toList());
     }
 
     public void addProduct(Product p) {

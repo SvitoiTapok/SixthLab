@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f552745-6576-4849-9529-773bdf58a5c9" name="Changes" comment="first Commit">
+    <list default="true" id="4f552745-6576-4849-9529-773bdf58a5c9" name="Changes" comment="troubles with add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/ProductCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ProductCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/AddIfMin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/AddIfMin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/AverageOfPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/AverageOfPrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Clear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Clear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/FilterLessThanOwner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/FilterLessThanOwner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/FilterStartsWithName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/FilterStartsWithName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/RemoveByID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/RemoveByID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/RemoveGreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/RemoveGreater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/RemoveLower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/RemoveLower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Show.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Update1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Update2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servCommands/Write.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servCommands/Write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/ProductCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ProductCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +85,7 @@
       <recent name="C:\Users\Lenovo\IdeaProjects\ITMO\Lab6\Server\src\main\java\Server" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="client" />
       <recent name="server" />
     </key>
   </component>
@@ -107,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715404353302</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="troubles with add">
+      <option name="closed" value="true" />
+      <created>1716400393117</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716400393117</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first Commit" />
+    <MESSAGE value="troubles with add" />
+    <option name="LAST_COMMIT_MESSAGE" value="troubles with add" />
   </component>
 </project>

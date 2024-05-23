@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class FilterStartsWithName implements Command{
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
-        String StrBegin = (String) p;
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
+        String StrBegin = (String) p[0];
         Set<Product> products = productCollection.getProducts().stream().filter(x -> x.getName().startsWith(StrBegin)).collect(Collectors.toSet());
         for(Product product: products){
             server.addMessage(product.toString());

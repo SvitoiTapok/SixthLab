@@ -9,7 +9,7 @@ import server.Server;
 
 public class Help implements Command {
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
         server.addMessage("Вот все доступные команды с описанием:");
         server.addMessage("help : вывести справку по доступным командам\n" +
                 "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n" +

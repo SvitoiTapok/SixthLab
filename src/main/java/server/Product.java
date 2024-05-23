@@ -60,6 +60,15 @@ public class Product implements Comparable<Product> {
         this.id = productCollection.MakeId();
         this.creationDate = ZonedDateTime.now();
     }
+    public Product(ProductCli productCli, long id, ProductCollection productCollection){
+        this.coordinates = productCli.getCoordinates();
+        this.owner = productCli.getOwner();
+        this.name = productCli.getName();
+        this.price = productCli.getPrice();
+        this.unitOfMeasure = productCli.getUnitOfMeasure();
+        this.id = id;
+        this.creationDate = ZonedDateTime.now();
+    }
 
     @Override
     public int compareTo(Product p) {

@@ -11,7 +11,7 @@ public class AverageOfPrice implements Command{
      */
 
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
         if(productCollection.getLen()==0)
             server.addMessage("В коллекции нет ни одного продукта");
         else {

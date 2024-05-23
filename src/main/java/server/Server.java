@@ -48,7 +48,7 @@ public class Server {
     }
 
     public void getCommand(ProductCollection productCollection){
-        byte[] data = new byte[200];
+        byte[] data = new byte[20000];
         ByteBuffer buf = ByteBuffer.wrap(data);
         try {
             sock.read(buf);
@@ -72,10 +72,22 @@ public class Server {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 
             Command command = (Command) objectInputStream.readObject();
+            //System.out.println(command);
             //System.out.println(command.getClass() + " " + command);
+            Object[] p = new Object[10];
+            byte i=0;
+            //System.out.println(byteArrayInputStream.available());
+            //System.out.println(objectInputStream.readObject());
+            while (true){
+                try {
+                    p[i++] = objectInputStream.readObject();
+                }
+                catch (IOException e){
+                    break;
+                }
+            }
 
-            Object p = objectInputStream.readObject();
-
+            //System.out.println(p);
             // Закрываем только ObjectInputStream
             objectInputStream.close();
 

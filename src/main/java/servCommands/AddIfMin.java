@@ -12,8 +12,8 @@ public class AddIfMin implements Command {
      * метод, создающий объект с помощью метода класса Product и записывающий его в коллекцию, если он меньше минимального элемента коллекции
      */
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
-        ProductCli productCli = (ProductCli) p;
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
+        ProductCli productCli = (ProductCli) p[0];
         Product product = new Product(productCli, productCollection);
         if(productCollection.getMinProduct().compareTo(product)>0){
             productCollection.addProduct(product);

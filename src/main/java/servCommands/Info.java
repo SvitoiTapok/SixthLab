@@ -10,7 +10,7 @@ import server.Server;
 
 public class Info implements Command{
     @Override
-    public void execute(ProductCollection productCollection, Object p, Server server) {
+    public void execute(ProductCollection productCollection, Object[] p, Server server) {
         String[] data = productCollection.getDate().toString().split(" ");
 
         server.addMessage("Коллекция состоит из элементов типа Product, она была создана " +
