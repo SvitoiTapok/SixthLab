@@ -10,8 +10,11 @@ public class Main {
         communictate(productCollection, server);
         }
     public static void communictate(ProductCollection productCollection, Server server){
-        while (!server.serverWaiting()){}
+        while (!server.serverWaiting()){
+            server.executeServCommand(productCollection);
+        }
         while (true) {
+            server.executeServCommand(productCollection);
             server.getCommand(productCollection);
             server.sendMessage();
         }

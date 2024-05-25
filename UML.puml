@@ -1,0 +1,228 @@
+@startuml
+class servCommands.RemoveGreater {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.AddIfMin {
++ void execute(ProductCollection,Object[],Server)
+}
+class innerClasses.Month {
+- {static} HashMap<String,String> mounths
++ {static} String getMounthTranslation(String)
+}
+class servCommands.Info {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.Save {
++ void execute(ProductCollection)
+}
+class server.Main {
++ {static} void main(String[])
++ {static} void communictate(ProductCollection,Server)
+}
+class servCommands.RemoveLower {
++ void execute(ProductCollection,Object[],Server)
+}
+class server.Server {
+- int port
+- SocketChannel sock
+- ServerSocketChannel serv
+- Scanner scanner
+- String message
+- ByteArrayOutputStream byteArrayOutputStream
+- ObjectOutputStream objectOutputStream
++ boolean createConnection()
++ boolean serverWaiting()
++ void executeServCommand(ProductCollection)
++ void getCommand(ProductCollection)
++ void executeCommand(byte[],ProductCollection)
++ void addMessage(String)
++ byte[] serializeMessage(String)
++ void sendMessage()
+}
+class servCommands.Add {
++ void execute(ProductCollection,Object[],Server)
+}
+class innerClasses.Coordinates {
+- double x
+- Float y
++ void setX(double)
++ {static} boolean checkX(double)
++ void setY(Float)
++ {static} boolean checkY(Float)
++ double getX()
++ Float getY()
++ String toString()
+}
+class server.ProductCollection {
+- LinkedHashSet<Product> products
+- HashSet<Long> ID
+- Date Creation_date
+- String readPath()
+- String readFile(String)
+- List<Product> convertStringToCollection(String)
++ List<Product> getProducts()
++ void addProduct(Product)
++ void removeProduct(long)
++ void removeProducts(Collection<Product>)
++ Date getDate()
++ int getLen()
++ void clearCollection()
++ Product getMinProduct()
++ long MakeId()
++ HashSet<Long> getID()
+}
+class servCommands.RemoveByID {
++ void execute(ProductCollection,Object[],Server)
+}
+enum enums.Country {
++  UNITED_KINGDOM
++  USA
++  SPAIN
++  ITALY
++  NORTH_KOREA
++  UZBEK
+}
+enum enums.UnitOfMeasure {
++  KILOGRAMS
++  SQUARE_METERS
++  GRAMS
+}
+class servCommands.FilterLessThanOwner {
++ void execute(ProductCollection,Object[],Server)
+}
+class innerClasses.Person {
+- String name
+- String passportID
+- EyeColor eyeColor
+- HairColor hairColor
+- Country nationality
++ void setName(String)
++ {static} boolean checkName(String)
++ void setPassportID(String)
++ {static} boolean checkPassportId(String)
++ void setEyeColor(EyeColor)
++ void setHairColor(HairColor)
++ void setNationality(Country)
++ String getName()
++ Country getNationality()
++ EyeColor getEyeColor()
++ HairColor getHairColor()
++ String getPassportID()
++ String toString()
++ int compareTo(Person)
++ {static} Person createPerson(Scanner,boolean)
+}
+interface servCommands.Command {
+~ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.AverageOfPrice {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.Update {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.Help {
++ void execute(ProductCollection,Object[],Server)
+}
+class server.Product {
+- long id
+- String name
+- Coordinates coordinates
+- ZonedDateTime creationDate
+- Float price
+- UnitOfMeasure unitOfMeasure
+- Person owner
++ int compareTo(Product)
++ String toString()
++ void setName(String)
++ {static} boolean checkName(String)
++ void setCoordinates(Coordinates)
++ void setOwner(Person)
++ void setPrice(Float)
++ {static} boolean checkPrice(Float)
++ void setUnitOfMeasure(UnitOfMeasure)
++ void setId(long)
++ long getId()
++ Float getPrice()
++ String getName()
++ Person getOwner()
++ Coordinates getCoordinates()
++ UnitOfMeasure getUnitOfMeasure()
++ ZonedDateTime getCreationDate()
++ {static} boolean checkProduct(Product)
+}
+class client.ProductCli {
+- String name
+- Coordinates coordinates
+- Float price
+- UnitOfMeasure unitOfMeasure
+- Person owner
++ int compareTo(ProductCli)
++ String toString()
++ void setName(String)
++ {static} boolean checkName(String)
++ void setCoordinates(Coordinates)
++ void setOwner(Person)
++ void setPrice(Float)
++ {static} boolean checkPrice(Float)
++ void setUnitOfMeasure(UnitOfMeasure)
++ Float getPrice()
++ String getName()
++ Person getOwner()
++ Coordinates getCoordinates()
++ UnitOfMeasure getUnitOfMeasure()
++ {static} ProductCli createProduct(Scanner,boolean)
++ {static} boolean checkProduct(ProductCli)
+}
+class servCommands.Write {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.Show {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.Clear {
++ void execute(ProductCollection,Object[],Server)
+}
+class servCommands.FilterStartsWithName {
++ void execute(ProductCollection,Object[],Server)
+}
+enum enums.HairColor {
++  GREEN
++  BLACK
++  ORANGE
++  WHITE
+}
+enum enums.EyeColor {
++  GREEN
++  WHITE
++  BROWN
+}
+class server.CollectionSaver {
+- List<Product> products
++ List<Product> getProducts()
+}
+
+
+servCommands.Command <|.. servCommands.RemoveGreater
+servCommands.Command <|.. servCommands.AddIfMin
+java.io.Serializable <|.. innerClasses.Month
+servCommands.Command <|.. servCommands.Info
+servCommands.Command <|.. servCommands.RemoveLower
+servCommands.Command <|.. servCommands.Add
+java.io.Serializable <|.. innerClasses.Coordinates
+servCommands.Command <|.. servCommands.RemoveByID
+servCommands.Command <|.. servCommands.FilterLessThanOwner
+innerClasses.Comparable <|.. innerClasses.Person
+java.io.Serializable <|.. innerClasses.Person
+java.io.Serializable <|-- servCommands.Command
+servCommands.Command <|.. servCommands.AverageOfPrice
+servCommands.Command <|.. servCommands.Update
+servCommands.Command <|.. servCommands.Help
+server.Comparable <|.. server.Product
+client.Comparable <|.. client.ProductCli
+java.io.Serializable <|.. client.ProductCli
+servCommands.Command <|.. servCommands.Write
+servCommands.Command <|.. servCommands.Show
+servCommands.Command <|.. servCommands.Clear
+servCommands.Command <|.. servCommands.FilterStartsWithName
+@enduml

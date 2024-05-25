@@ -38,7 +38,7 @@ public class ProductCollection {
     }
 
     //конвертация строки в коллекцию
-    private LinkedHashSet<Product> convertStringToCollection(String json) {
+    private List<Product> convertStringToCollection(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         try {
@@ -59,7 +59,7 @@ public class ProductCollection {
         if (path != null) {
             String json = readFile(path);
             if (json != null) {
-                LinkedHashSet<Product> products1 = convertStringToCollection(json);
+                List<Product> products1 = convertStringToCollection(json);
                 if (products1 != null) {
                     for (Product product : products1) {
                         if (Collections.frequency(ID, product.getId()) > 0 || product.getId() < 1) {

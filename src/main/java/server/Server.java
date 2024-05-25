@@ -1,17 +1,21 @@
 package server;
 
 import servCommands.Command;
+import servCommands.Save;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.Scanner;
 
 public class Server {
-    private final int port = 1110;
+    private final int port = 45000;
+    //private final int port = 1110;
     private SocketChannel sock;
     private ServerSocketChannel serv;
+    private final Scanner scanner = new Scanner(System.in);
 
     private String message="";
 
@@ -26,7 +30,6 @@ public class Server {
             return true;
         }catch (IOException e) {
             System.out.println("Проблемы с созданием сервера");
-            e.printStackTrace();
             return false;
         }
     }
@@ -47,8 +50,33 @@ public class Server {
         }
     }
 
+    //чтение команды вводимой в консоль сервера
+    public void executeServCommand(ProductCollection productCollection){
+        try {
+            if(System.in.available()>0){
+                String command = scanner.nextLine();
+                if(command.equals("save")){
+                    Save save = new Save();
+                    save.execute(productCollection);
+                }else {
+                    if (command.equals("exit")) {
+                        Save save = new Save();
+                        save.execute(productCollection);
+                        System.out.println("Выключение сервера");
+                        System.exit(0);
+                    } else {
+                        System.out.println("у сервера нет команды:" + command + ", у него есть только команды save и exit");
+
+                    }
+                }
+            }
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+        }
+    }
+
     public void getCommand(ProductCollection productCollection){
-        byte[] data = new byte[20000];
+        byte[] data = new byte[64000];
         ByteBuffer buf = ByteBuffer.wrap(data);
         try {
             sock.read(buf);
@@ -62,10 +90,13 @@ public class Server {
                 executeCommand(data, productCollection);
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+
+            //throw new RuntimeException(e);
         }
 
     }
+
+
     public void executeCommand(byte[] data, ProductCollection productCollection) {
         try {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
@@ -93,7 +124,13 @@ public class Server {
 
             command.execute(productCollection, p, this);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            System.out.println("Соединение было прервано, повторная попытка подключения");
+            Main.communictate(productCollection, this);
         }
     }
     public void addMessage(String message){
@@ -118,7 +155,7 @@ public class Server {
         byte[] data;
         //System.out.println(message);
         data = serializeMessage(message);
-        ByteBuffer buf = ByteBuffer.allocate(20000);
+        ByteBuffer buf = ByteBuffer.allocate(64000);
         buf.put(data);
         //System.out.println(new String(data));
         buf.flip();

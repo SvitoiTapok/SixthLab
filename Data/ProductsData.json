@@ -1,0 +1,2 @@
+{"products":[{"id":1,"name":"aaaa","coordinates":{"x":8.0,"y":8.0},"creationDate":1716580505.717465600,"price":888.0,"unitOfMeasure":"GRAMS","owner":{"name":"adf","passportID":"a;fld","eyeColor":"GREEN","hairColor":"BLACK","nationality":"USA"}},
+{"id":2,"name":"asdf","coordinates":{"x":9.0,"y":9.0},"creationDate":1716580544.086010900,"price":9999.0,"unitOfMeasure":"GRAMS","owner":{"name":"ladf","passportID":"asdf","eyeColor":null,"hairColor":null,"nationality":"USA"}}]}

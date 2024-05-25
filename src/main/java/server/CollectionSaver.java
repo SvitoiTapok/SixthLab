@@ -1,16 +1,17 @@
 package server;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 
 public class CollectionSaver {
-    private LinkedHashSet<Product> products = new LinkedHashSet<>();
+    private List<Product> products;
 
-    public CollectionSaver(LinkedHashSet<Product> products) {
+    public CollectionSaver(List<Product> products) {
         this.products = products;
     }
     public CollectionSaver(){};
 
-    public LinkedHashSet<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 }
